@@ -1,7 +1,6 @@
 class Client < ApplicationRecord
-	has_secure_password
-
-	has_many :claims
+  has_secure_password
+  has_many :claims, dependent: :destroy
 
 	validates :email, uniqueness: { case_sensitive: false }
 	validates :address_street, presence: false

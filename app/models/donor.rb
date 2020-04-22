@@ -1,9 +1,9 @@
 class Donor < ApplicationRecord
 	has_secure_password
 
-	has_many :donations
-	has_many :claims, through: :donations
-	accepts_nested_attributes_for :claims
+  has_many :donations, dependent: :destroy
+  has_many :claims, through: :donations
+  accepts_nested_attributes_for :claims
 	
 	validates :organization_name, presence: true
 	validates :email, uniqueness: { case_sensitive: false }

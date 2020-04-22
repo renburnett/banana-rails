@@ -1,6 +1,6 @@
 class Donation < ApplicationRecord
-	belongs_to :donor
-	has_many :claims
+  belongs_to :donor
+  has_many :claims, dependent: :destroy
 
 	validates :food_name, presence: true
 	validates :measurement, presence: true

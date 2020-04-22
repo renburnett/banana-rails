@@ -6,130 +6,128 @@ Donation.destroy_all
 Client.destroy_all
 Donor.destroy_all
 
-puts "Seeding Donors..."
+logger.debug('Seeding Donors...')
 
 donor1 = Donor.create!(
-	organization_name: "Foods 4 U",
-	email: "donor@donor.com",
-	password: "donor",
-	address_street: "704 Terry Ave",
-	address_city: "Seattle",
-	address_state: "WA",
-	address_zip: 98104,
-	business_license: "9198DD435AS3456",
-	account_status: "active",
-	pickup_location: "Front desk",
+  organization_name: 'Foods 4 U',
+  email: 'donor@donor.com',
+  password: 'donor',
+  address_street: '704 Terry Ave',
+  address_city: 'Seattle',
+  address_state: 'WA',
+  address_zip: '98104',
+  business_license: '9198DD435AS3456',
+  account_status: 'active',
+  pickup_location: 'Front desk'
 )
 donor2 = Donor.create(
-	organization_name: "Unapproved",
-	email: "approve@me.com",
-	password: "approve",
-	address_street: "2245 1st Ave S",
-	address_city: "Seattle",
-	address_state: "WA",
-	address_zip: 98134,
-	business_license: "DSJ0984DFGK32",
-	account_status: "pending",
-	pickup_location: 'Side entrance',
+  organization_name: 'Unapproved',
+  email: 'approve@me.com',
+  password: 'approve',
+  address_street: '2245 1st Ave S',
+  address_city: 'Seattle',
+  address_state: 'WA',
+  address_zip: '98134',
+  business_license: 'DSJ0984DFGK32',
+  account_status: 'pending',
+  pickup_location: 'Side entrance'
 )
 donor3 = Donor.create(
-	organization_name: "ABC Grocery",
-	email: "donor3@donor3.com",
-	password: "donor3",
-	address_street: '12001 Main St',
-	address_city: 'Bellevue',
-	address_state: 'WA',
-	address_zip: 98005,
-	business_license: "123456789",
-	account_status: "approved",
-	pickup_location: 'Loading dock',
+  organization_name: 'ABC Grocery',
+  email: 'donor3@donor3.com',
+  password: 'donor3',
+  address_street: '12001 Main St',
+  address_city: 'Bellevue',
+  address_state: 'WA',
+  address_zip: '98005',
+  business_license: '123456789',
+  account_status: 'approved',
+  pickup_location: 'Loading dock'
 )
 donor4 = Donor.create(
-	organization_name: "Good Food Restaurant",
-	email: "donor4@donor4.com",
-	password: "donor4",
-	address_street: '1100 9th Ave',
-	address_city: 'Seattle',
-	address_state: 'WA',
-	address_zip: 98101,
-	business_license: "123456789",
-	account_status: "approved",
-	pickup_location: 'Front register',
+  organization_name: 'Good Food Restaurant',
+  email: 'donor4@donor4.com',
+  password: 'donor4',
+  address_street: '1100 9th Ave',
+  address_city: 'Seattle',
+  address_state: 'WA',
+  address_zip: '98101',
+  business_license: '123456789',
+  account_status: 'approved',
+  pickup_location: 'Front register'
 )
 donor5 = Donor.create(
-	organization_name: "A Coffeeshop",
-	email: "donor5@donor5.com",
-	password: "donor5",
-	address_street: '1014 Madison St',
-	address_city: 'Seattle',
-	address_state: 'WA',
-	address_zip: 98104,
-	business_license: "123456789",
-	account_status: "approved",
-	pickup_location: 'Back door',
+  organization_name: 'A Coffeeshop',
+  email: 'donor5@donor5.com',
+  password: 'donor5',
+  address_street: '1014 Madison St',
+  address_city: 'Seattle',
+  address_state: 'WA',
+  address_zip: '98104',
+  business_license: '123456789',
+  account_status: 'approved',
+  pickup_location: 'Back door'
 )
 donor6 = Donor.create(
-	organization_name: "Chad's Deli",
-	email: "donor6@donor6.com",
-	password: "donor6",
-	address_street: '519 6th Ave S',
-	address_city: 'Seattle',
-	address_state: 'WA',
-	address_zip: 98104,
-	business_license: "123456789",
-	account_status: "approved",
-	pickup_location: 'Side door',
+  organization_name: "Chad's Deli",
+  email: 'donor6@donor6.com',
+  password: 'donor6',
+  address_street: '519 6th Ave S',
+  address_city: 'Seattle',
+  address_state: 'WA',
+  address_zip: '98104',
+  business_license: '123456789',
+  account_status: 'approved',
+  pickup_location: 'Side door'
 )
 donor7 = Donor.create(
-	organization_name: "Fancy Foods",
-	email: "donor7@donor7.com",
-	password: "donor7",
-	address_street: '1700 East Madison St',
-	address_city: 'Seattle',
-	address_state: 'WA',
-	address_zip: 98122,
-	business_license: "123456789",
-	account_status: "approved",
-	pickup_location: 'Customer Service desk',
+  organization_name: 'Fancy Foods',
+  email: 'donor7@donor7.com',
+  password: 'donor7',
+  address_street: '1700 East Madison St',
+  address_city: 'Seattle',
+  address_state: 'WA',
+  address_zip: '98122',
+  business_license: '123456789',
+  account_status: 'approved',
+  pickup_location: 'Customer Service desk'
 )
 donor8 = Donor.create(
-	organization_name: "XYZ Grocery",
-	email: "donor8@donor8.com",
-	password: "donor8",
-	address_street: '532 Broadway E',
-	address_city: 'Seattle',
-	address_state: 'WA',
-	address_zip: 98102,
-	business_license: "123456789",
-	account_status: "approved",
-	pickup_location: 'Register 12',
+  organization_name: 'XYZ Grocery',
+  email: 'donor8@donor8.com',
+  password: 'donor8',
+  address_street: '532 Broadway E',
+  address_city: 'Seattle',
+  address_state: 'WA',
+  address_zip: '98102',
+  business_license: '123456789',
+  account_status: 'approved',
+  pickup_location: 'Register 12'
 )
 donor9 = Donor.create(
-	organization_name: "Dangerousway",
-	email: "donor9@donor9.com",
-	password: "donor9",
-	address_street: '1930 2nd Ave',
-	address_city: 'Seattle',
-	address_state: 'WA',
-	address_zip: 98101,
-	business_license: "123456789",
-	account_status: "approved",
-	pickup_location: 'Side',
+  organization_name: 'Dangerousway',
+  email: 'donor9@donor9.com',
+  password: 'donor9',
+  address_street: '1930 2nd Ave',
+  address_city: 'Seattle',
+  address_state: 'WA',
+  address_zip: '98101',
+  business_license: '123456789',
+  account_status: 'approved',
+  pickup_location: 'Side'
 )
 donor10 = Donor.create(
-	organization_name: "Macco Groceries",
-	email: "donor10@donor10.com",
-	password: "donor10",
-	address_street: '235 Summit Ave E',
-	address_city: 'Seattle',
-	address_state: 'WA',
-	address_zip: 98102,
-	business_license: "123456789",
-	account_status: "approved",
-	pickup_location: 'Side',
+  organization_name: 'Macco Groceries',
+  email: 'donor10@donor10.com',
+  password: 'donor10',
+  address_street: '235 Summit Ave E',
+  address_city: 'Seattle',
+  address_state: 'WA',
+  address_zip: '98102',
+  business_license: '123456789',
+  account_status: 'approved',
+  pickup_location: 'Side'
 )
-
-puts "Seeding Donations..."
 
 donation1 = Donation.create!(
 	food_name: "Bananas",
@@ -197,6 +195,7 @@ donation6 = Donation.create(
 	pickup_location: donor2.pickup_location,
 	canceled: false,
 )
+# rubocop:todo Lint/UselessAssignment
 donation7 = Donation.create(
 	food_name: "Yogurt cups",
 	measurement: "cup",
@@ -395,60 +394,58 @@ donation24 = Donation.create(
 	pickup_location: donor4.pickup_location,
 	canceled: false,
 )
+# rubocop:enable Lint/UselessAssignment
 
-
-puts "Seeding Clients..."
+logger.debug('Seeding Clients...')
 
 client1 = Client.create!(
-	email: "client@client.com",
-	password: "client",
-	address_street: "1411 4th Ave",
-	address_city: "Seattle",
-	address_state: "Washington",
-	address_zip: 98101,
-	account_status: "active",
-	transportation_method: "car",
-	ethnicity: "Black or African American",
-	gender: "Prefer Not to Answer",
+  email: 'client@client.com',
+  password: 'client',
+  address_street: '1411 4th Ave',
+  address_city: 'Seattle',
+  address_state: 'Washington',
+  address_zip: '98101',
+  account_status: 'active',
+  transportation_method: 'car',
+  ethnicity: 'Black or African American',
+  gender: 'Prefer Not to Answer'
 )
 
 client2 = Client.create(
-	email: "c2@me.com",
-	password: "password2",
-	address_street: "2901 3rd Ave",
-	address_city: "Seattle",
-	address_state: "Washington",
-	address_zip: 98121,
-	account_status: "pending",
-	transportation_method: "walk",
-	ethnicity: "White",
-	gender: "Female"
+  email: 'c2@me.com',
+  password: 'password2',
+  address_street: '2901 3rd Ave',
+  address_city: 'Seattle',
+  address_state: 'Washington',
+  address_zip: '98121',
+  account_status: 'pending',
+  transportation_method: 'walk',
+  ethnicity: 'White',
+  gender: 'Female'
 )
 
 client3 = Client.create(
-	email: "c3@me.com",
-	password: "password3",
-	address_street: "111 S Jackson St",
-	address_city: "Seattle",
-	address_state: "Washington",
-	address_zip: 98104,
-	account_status: "suspended",
-	transportation_method: "bike",
-	ethnicity: "Hispanic or Latino",
-	gender: "Male"
+  email: 'c3@me.com',
+  password: 'password3',
+  address_street: '111 S Jackson St',
+  address_city: 'Seattle',
+  address_state: 'Washington',
+  address_zip: '98104',
+  account_status: 'suspended',
+  transportation_method: 'bike',
+  ethnicity: 'Hispanic or Latino',
+  gender: 'Male'
 )
 
-puts "Seeding Claims..."
-
 def create_claim(client_id, donation_id, completed)
-	Claim.create!(
-		client_id: client_id,
-		donation_id: donation_id,
-		qr_code: Base64.encode64({ 'client_id': client_id, 'donation_id': donation_id }.to_json).chomp,
-		completed: completed,
-		time_claimed: Time.now,
-		canceled: false
-	)
+  Claim.create!(
+    client_id: client_id,
+    donation_id: donation_id,
+    qr_code: Base64.encode64({ 'client_id': client_id, 'donation_id': donation_id }.to_json).chomp,
+    completed: completed,
+    time_claimed: Time.zone.now,
+    canceled: false
+  )
 end
 
 claims = [
@@ -467,11 +464,9 @@ claims = [
 ]
 
 claims.each { |c| create_claim(*c) }
-
-puts "Seeding Admins..."
 Admin.create!(
 	email: 'admin@admin.com',
 	password: 'admin',
 )
 
-puts "Finished with no errors"
+logger.debug('Seeding Admin...')

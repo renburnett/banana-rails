@@ -24,57 +24,61 @@ class DonorsController < ApplicationController
 		end
 	end
 
-	def account_status
-		id = params[:id].to_i
-		status = params[:status]
+  # rubocop:todo Metrics/MethodLength, Metrics/AbcSize
+  def account_status
+    id = params[:id].to_i
+    status = params[:status]
 
-		@donor = Donor.find(id)
-		success_message = { message: "Donor id: #{id} status changed to #{status}. Was: #{@donor.account_status}" }
-		failure_message = { error: "Donor id: #{id} status not changed to #{status}.  Remained: #{@donor.account_status}" }
+    @donor = Donor.find(id)
 
-		case status
-		when 'approved'
-			success = @donor.update_attribute(:account_status, 'approved')
-		when 'pending'
-			success = @donor.update_attribute(:account_status, 'pending')
-		when 'active'
-			success = @donor.update_attribute(:account_status, 'active')
-		when 'suspended'
-			success = @donor.update_attribute(:account_status, 'suspended')
-		end
+    case status
+    when 'approved'
+      success = @donor.update({ account_status: 'approved' })
+    when 'pending'
+      success = @donor.update({ account_status: 'pending' })
+    when 'active'
+      success = @donor.update({ account_status: 'active' })
+    when 'suspended'
+      success = @donor.update({ account_status: 'suspended' })
+    end
 
-		success ?
-			(render json: success_message, status: :updated) :
-			(render json: failure_message, status: :unprocessable_entity)
-	end
+    if success
+      render json: {
+        message: "Donor id: #{id} status changed to #{status}. Was: #{@donor.account_status}"
+      }, status: :updated
+    else
+      render json: {
+        error: "Donor id: #{id} status not changed to #{status}.  Remained: #{@donor.account_status}"
+      }, status: :unprocessable_entity
+    end
+  end
+  # rubocop:enable Metrics/MethodLength, Metrics/AbcSize
 
-	def update
-		@donor = Donor.find(params[:id])
-		if @donor.update(donor_params)
-			render json: @donor
-		else
-			failure_message = { error: "Donor id: #{params[:id]} was not updated. #{@donor.errors.full_messages}" }
-			puts failure_message
-			render json: failure_message
-		end
-	end
+  def update
+    @donor = Donor.find(params[:id])
+    if @donor.update(donor_params)
+      render json: @donor
+    else
+      failure_message = { error: "Donor id: #{params[:id]} not updated. #{@donor.errors.full_messages}" }
+      logger.debug('ERROR: On donor#update in donors_controller.rb, line: 59')
+      render json: failure_message
+    end
+  end
 
-	def scan_qr_code
-		claim = JSON.parse(Base64.decode64(params[:qr_code]))
-		@claim = Claim.find_by(client_id: claim.client_id, donation_id: claim.donation_id)
-		if @claim
-			if !@claim.completed
-				@claim.completed = true
-				@claim.save
-				render json: { message: 'claim completed' }, status: :accepted
-				return
-			else
-				render json: { error: 'claim has already been completed'}, status: :unprocessable_entity
-			end
-		else
-			render json: { error: 'claim not found' }, status: :unprocessable_entity
-		end
-	end
+  def scan_qr_code
+    claim = JSON.parse(Base64.decode64(params[:qr_code]))
+    @claim = Claim.find_by(client_id: claim.client_id, donation_id: claim.donation_id)
+    return render json: { error: 'claim not found' }, status: :unprocessable_entity unless @claim
+
+    if !@claim.completed
+      @claim.completed = true
+      @claim.save
+      render json: { message: 'claim completed' }, status: :accepted
+      nil
+    else
+      render json: { error: 'claim has already been completed' }, status: :unprocessable_entity
+    end
+  end
 
 	private
 

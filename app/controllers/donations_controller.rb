@@ -7,6 +7,7 @@ class DonationsController < ApplicationController
 		render json: Donation.all
 	end
 
+<<<<<<< HEAD
 	def active
 		@active = Donation.all.select do |d|
 			# Check if each donation is still active based on the time it was created and its duration.
@@ -15,6 +16,16 @@ class DonationsController < ApplicationController
 		end
 		render json: @active
 	end
+=======
+  def active
+    @active = Donation.all.select do |d|
+      # Check if each donation is still active based on the time it was created and its duration.
+      # Time.zone.now comes back in seconds, so we divide by 60 to compare in minutes.
+      (Time.zone.now - d.created_at) / 60 < d.duration_minutes
+    end
+    render json: @active
+  end
+>>>>>>> 2c5e8c1... temporarily disable some cops; have rubocop ignore comments; refactor code that triggers rubocop errors; add TODOs
 
 	def show
 		render json: Donation.find(params[:id])
@@ -41,33 +52,35 @@ class DonationsController < ApplicationController
 		end
 	end
 
-	def make_claim
-		donation_id = params[:id]
-		client_id = params[:client_id]
+  # rubocop:todo Metrics/AbcSize, Metrics/MethodLength
+  def make_claim
+    donation_id = params[:id]
+    client_id = params[:client_id]
 
-		# No multiple claims by one client on one donation
-		if Claim.find_by(donation_id: donation_id, client_id: client_id)
-			render json: { error: 'claim already exists for this client and donation' }, status: :unprocessable_entity
-			return
-		end
+    # No multiple claims by one client on one donation
+    if Claim.find_by(donation_id: donation_id, client_id: client_id)
+      render json: { error: 'Claim exists for this client and donation' }, status: :unprocessable_entity
+      return
+    end
 
-		qr_code = Base64.encode64({ 'client_id': params[:client_id], 'donation_id': params[:id] }.to_json).chomp
-		claim_params = {
-			client_id: params[:client_id],
-			donation_id: params[:id],
-			qr_code: qr_code,
-			completed: false,
-			time_claimed: Time.now,
-			canceled: false,
-		}
-		@claim = Claim.new(claim_params)
-		if @claim.valid?
-			@claim.save
-			render json: { claim: ClaimSerializer.new(@claim) }, status: :accepted
-		else
-			render json: { error: 'failed to create claim' }, status: :unprocessable_entity
-		end
-	end
+    qr_code = Base64.encode64({ 'client_id': params[:client_id], 'donation_id': params[:id] }.to_json).chomp
+    claim_params = {
+      client_id: params[:client_id],
+      donation_id: params[:id],
+      qr_code: qr_code,
+      completed: false,
+      time_claimed: Time.zone.now,
+      canceled: false
+    }
+    @claim = Claim.new(claim_params)
+    if @claim.valid?
+      @claim.save
+      render json: { claim: ClaimSerializer.new(@claim) }, status: :accepted
+    else
+      render json: { error: 'failed to create claim' }, status: :unprocessable_entity
+    end
+  end
+  # rubocop:enable Metrics/AbcSize, Metrics/MethodLength
 
 	private
 

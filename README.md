@@ -112,7 +112,43 @@ Banana App is an open-source, not-for-profit project of The Be Good Foundation. 
 
   **[Donor/Client](https://github.com/FoodIsLifeBGP/banana-rn)**
 
-## common problems：
+# Contributing
+
+Fork the repo, make your changes on `master`, rebase and submit a PR.  Add all the contributors as reviewers so we are notified.
+
+In order to merge your PR, the code will need to pass the rubocop checks. Our checks are extended from the official Ruby style guide.  To check your branch before making a pull request, run one of the following commands:
+
+## Linting with Rubocop
+see [Basic Usage](https://rubocop.readthedocs.io/en/latest/basic_usage/)
+or [Formatters](https://rubocop.readthedocs.io/en/latest/formatters/)
+
+```
+rubocop
+```
+
+The `rubocop` command checks all ruby source files in the current directory and outputs results to your terminal unless otherwise specified-- you should add files that need to be **excluded** to the `.rubocop.yml` config file.
+
+```
+rubocop --format html -o log/rubocop.html
+rubocop --format simple > log/rubocop_simple.txt
+```
+
+The `--format` flag allows you to alter the way in which the output is given to you. I've found the **html** formatter is the most readable/helpful.
+
+---
+
+In order to direct certain cops to ignore code blocks that are not ready to be error-checked add the following decorators above and below the discrepant code block: 
+
+```
+# rubocop:todo SomeCopClass/SomeSpecificCop, AnotherCopClass/AnotherSpecificCop
+  def method_failing_some_specific_cop_check
+    ...
+  end
+# rubocop:enable SomeCopClass/SomeSpecificCop, AnotherCopClass/AnotherSpecificCop
+```
+
+
+# Common Problems：
 
 - `standard_init_linux.go:211: exec user process caused "no such file or directory"`
   - Use any software(Like [notepad++](https://stackoverflow.com/questions/51508150/standard-init-linux-go190-exec-user-process-caused-no-such-file-or-directory)) to replace the CRLF in file to LF.
