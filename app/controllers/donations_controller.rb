@@ -7,16 +7,6 @@ class DonationsController < ApplicationController
 		render json: Donation.all
 	end
 
-<<<<<<< HEAD
-	def active
-		@active = Donation.all.select do |d|
-			# Check if each donation is still active based on the time it was created and its duration.
-			# Time.now comes back in seconds, so we divide by 60 to compare in minutes.
-			(Time.now - d.created_at) / 60 < d.duration_minutes
-		end
-		render json: @active
-	end
-=======
   def active
     @active = Donation.all.select do |d|
       # Check if each donation is still active based on the time it was created and its duration.
@@ -25,7 +15,6 @@ class DonationsController < ApplicationController
     end
     render json: @active
   end
->>>>>>> 2c5e8c1... temporarily disable some cops; have rubocop ignore comments; refactor code that triggers rubocop errors; add TODOs
 
 	def show
 		render json: Donation.find(params[:id])
