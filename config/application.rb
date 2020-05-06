@@ -34,8 +34,8 @@ module Backend
     # Skip views, helpers and assets when generating a new resource.
     config.api_only = true
 
-    # Set default time zone to Pacific Standard Time http://danilenko.org/2012/7/6/rails_timezones/
-    config.time_zone = 'Pacific Time (US & Canada)'
+    # Set default time zone to Universal Coordinated Time http://danilenko.org/2012/7/6/rails_timezones/
+    config.time_zone = 'UTC'
     config.active_record.default_timezone = :local
   end
 end
